@@ -1,13 +1,41 @@
 /* Stylesheet by Peter Nielsen, David J. Waro, Jacob P. Hrubecky */
 
+body {
+  background-color: #f2ffe6;
+}
+
+#title {
+  position: absolute;
+  top: 2%;
+  text-align: left;
+  font-size: 45px;
+  font-family: Arial;
+  color: #e0b574;
+  text-shadow:
+    -1px -1px 0 #004d00,
+     1px -1px 0 #004d00,
+     -1px 1px 0 #004d00,
+      1px 1px 0 #004d00;
+}
+
+
 #mapid {
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    top:0;
-    bottom:0;
-    left:0;
-    right:0;
-    overflow: hidden;
-    z-index: -1;
+  height: 80%;
+  width: 60%;
+  position: absolute;
+  top:19%;
+  bottom:0;
+  left:20%;
+  right:20%;
+  overflow: hidden;
+  display: inline-block;
+  z-index: 1000;
+  border-style: solid;
+  border-width: medium;
+  border-color: black;
+  border-radius: 1em;
+}
+
+#left-pane {
+
 }

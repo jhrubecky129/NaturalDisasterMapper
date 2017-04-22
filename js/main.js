@@ -4,14 +4,18 @@ function initialize(){
 	createMap();
 };
 
+// Title
+$("#title").append("<b>Natural Disaster Mapper</b>");
+
+
 // sets map element and its properties
 function createMap() {
 
-	var mymap = L.map('mapid').setView([37.0866, -115.00], 6);
+	var mymap = L.map('mapid').setView([37.0866, -115.00], 5);
 
 	mymap.setMaxBounds([
 		[10, -200],
-		[70, -20],
+		[75, -20],
 	]).setMinZoom(3);
 
 	// tile layer
@@ -26,7 +30,7 @@ function createMap() {
 // assigns the respected geojsons to the apropriate variables
 function getData(mymap) {
 
-	var state_events = $.ajax("data/state_events.geojson", {
+	var county_events = $.ajax("data/county_events.geojson", {
 		dataType: "json",
 		success: function(response){
 			// add in later L.geoJson(response).addTo(mymap);
@@ -36,7 +40,6 @@ function getData(mymap) {
 
 			// call function to create proportional symbols
       createPropSymbols(response, mymap, attributes);
-
 		}
 	});
 
@@ -49,9 +52,8 @@ function getData(mymap) {
 		}
 	});
 
-
 	/* Currently lays over symbols and can't retrieve */
-	
+
 	// var counties = $.ajax("data/counties.geojson", {
 	// 	dataType: "json",
 	// 	success: function(response){
@@ -89,7 +91,7 @@ function processData(data){
 		// } else if (attribute.indexOf("Wildfire") > -1){
     //   attributes.push(attribute);
 		// } else
-		if (attribute.indexOf("Total_Events") > -1){
+		if (attribute.indexOf("Total_Events_2000") > -1){
       attributes.push(attribute);
 		};
 
@@ -110,8 +112,13 @@ function createPropSymbols(data, mymap, attributes){
     }
   }).addTo(mymap);
 
+	proportionalSymbols.bringToFront();
+
   // call search function
   search(mymap, data, proportionalSymbols)
+
+	// call to create the dropdown menu
+	dropdown(mymap, data, attributes, proportionalSymbols)
 
 }; // close to createPropSymbols
 
@@ -124,7 +131,7 @@ function pointToLayer(feature, latlng, attributes, layer){
 
   // create marker options
   var options = {
-    fillColor: "#80bfff",
+    fillColor: "#FFF",
     color: "#000",
     weight: 1,
     opacity: 1,
@@ -136,7 +143,7 @@ function pointToLayer(feature, latlng, attributes, layer){
 
   // calculate the radius and assign it to the radius of the options marker.
   // Multiplied by 10
-  options.radius = calcPropRadius((attValue * 15));
+  options.radius = calcPropRadius((attValue * 20));
 
   // assign the marker with the options styling and using the latlng repsectively
   var layer = L.circleMarker(latlng, options);
@@ -187,7 +194,7 @@ function Popup(properties, layer, radius){
   // creating the Popup object that can then be used more universally
   this.properties = properties;
   this.layer = layer;
-  this.content = "<p><b>State:</b> " + this.properties.State + "</p>";
+  this.content = "<p><b>County:</b> " + this.properties.County + "</p>";
 
   this.bindToLayer = function(){
     this.layer.bindPopup(this.content, {
@@ -205,7 +212,7 @@ function search (mymap, data, proportionalSymbols){
   var searchLayer = new L.Control.Search({
     position: 'topleft',  // positions the operator in the top left of the screen
     layer: proportionalSymbols,  // use proportionalSymbols as the layer to search through
-    propertyName: 'State',  // search for State name
+    propertyName: 'County',  // search for State name
     marker: false,
     moveToLocation: function (latlng, title, mymap) {
 
@@ -219,6 +226,23 @@ function search (mymap, data, proportionalSymbols){
   mymap.addControl(searchLayer);
 
 }; // close to search function
+
+function dropdown(mymap, data, proportioinalSymbols) {
+
+	var legend = new L.control({
+		position: 'topright',
+		layer: proportioinalSymbols,
+	});
+
+	legend.onAdd = function (mymap) {
+		var div = L.DomUtil.create('div', 'dropdown');
+		div.innerHTML = '<select><option>1</option><option>2</option><option>3</option></select>';
+		div.firstChild.onmousedown = div.firstChild.ondblclick = L.DomEvent.stopPropagation;
+		return div;
+	};
+
+	legend.addTo(mymap);
+}
 
 // function callback(response, status, jqXHRobject){
 // 	console.log(response)
