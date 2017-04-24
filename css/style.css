@@ -36,6 +36,43 @@ body {
   border-radius: 1em;
 }
 
-#left-pane {
+.legend-control-container {
 
+  background-color: rgba(255,255,255,0.8);
+  
+  text-align: center;
+  border: solid gray 1.5px;
+  border-radius: 1em;
+}
+
+#left-pane {
+  position: fixed;
+  display: inline-block;
+  top: 19%;
+  width: 17%;
+  height: 76%;
+  left: 1.5%;
+  right: 81.5%;
+  bottom: 5%;
+  background-color: #FFDEAD;
+  border: solid;
+  border-width: thin;
+  border-color: black;
+  border-radius: 1em;
+}
+
+#right-pane {
+  position: fixed;
+  display: inline-block;
+  top: 19%;
+  width: 17%;
+  height: 76%;
+  left: 81.5%;
+  right: 1.5%;
+  bottom: 5%;
+  background-color: #FFDEAD;
+  border: solid;
+  border-width: thin;
+  border-color: black;
+  border-radius: 1em;
 }
