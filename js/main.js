@@ -56,11 +56,12 @@ function layers(mymap) {
 	var counties = $.ajax("data/counties.geojson", {
 		dataType: "json",
 		success: function(response){
-			L.geoJson(response, {style: swStyle}).bringToFront();//.addTo(mymap).bringToFront();
+			//L.geoJson(response, {style: swStyle}).bringToFront().addTo(mymap);
 		}
 	});
 
 	// mymap.on('zoomend', function (e) {
+	// 	console.log("zoom:" + mymap.getZoom());
 	//     changeLayers(mymap, swStates, counties);
 	// });
 
@@ -96,17 +97,26 @@ function clean_map(mymap) {
 function changeLayers(mymap, swStates, counties) {
 
 	 if (mymap.getZoom() >= 7 ) {
-	   clean_map();
-		 counties.addTo(mymap);
+
+		 mymap.removeLayer(swStates);
+		 //clean_map();
+		 mymap.addLayer(counties);
+
 	 } else if (mymap.getZoom() < 7 ) {
-		 clean_map();
-	   swStates.addTo(mymap);
+		 //clean_map();
+		 mymap.removeLayer(counties);
+	   my(mymap);
 	 };
 }
 
 
 // assigns the respected geojsons to the apropriate variables
 function getData(mymap) {
+
+	// d3.queue()
+	// 		.defer(d3.json, "data/state_events.geojson") // load attributes from csv
+	// 		.defer(d3.json, "data/NZ_Boundaries.topojson") // spatial data
+	// 		.await(callback);
 
 	var state_events = $.ajax("data/state_events.geojson", {
 		dataType: "json",
@@ -132,7 +142,7 @@ function swStyle() {
 		fillColor: 'white',
 		weight: 2,
 		opacity: 1,
-		color: 'white',
+		color: 'black',
 		fillOpacity: 0,
 	};
 };
@@ -177,7 +187,7 @@ function processData(data){
 		// } else if (attribute.indexOf("Wildfire") > -1){
     //   attributes.push(attribute);
 		// } else
-		if (attribute.indexOf("Total_Events_2000") > -1){
+		if (attribute.indexOf("Total") > -1){
       attributes.push(attribute);
 		};
 
@@ -264,6 +274,8 @@ function pointToLayer(feature, latlng, attributes, layer){
 }; // close to pointToLayer function
 
 
+
+
 //calculate the radius of each proportional symbol
 function calcPropRadius(attValue) {
 
@@ -280,6 +292,8 @@ function calcPropRadius(attValue) {
   return radius;
 
 }; // close to calcPropRadius
+
+
 
 
 // OOM Popup constructor function
@@ -362,7 +376,7 @@ function createSequenceControls(mymap, attributes, index){
 
   //set slider attributes
   $('.range-slider').attr({
-    max: 6,
+    max: 16,
     min: 0,
     value: 0,
     step: 1
@@ -390,14 +404,14 @@ function createSequenceControls(mymap, attributes, index){
       // increment index
       index++;
       // if past the last attribute, wrap around to first attribute
-      index = index > 6 ? 0 : index;
+      index = index > 16 ? 0 : index;
 
     } else if ($(this).attr('id') == 'reverse'){ // if reverse button is clicked
 
       // decrement index
       index--;
       // if past the first attribute, wrap around to last attribute
-      index = index < 0 ? 6 : index;
+      index = index < 0 ? 16 : index;
 
     };
 
@@ -412,22 +426,23 @@ function createSequenceControls(mymap, attributes, index){
 }; // close to createSequenceControls function
 
 
-
+// var to create a dropdown menu
 function dropdown(mymap, data, proportionalSymbols) {
 
-	var legend = new L.control({
+	var menu = new L.control({
 		//position: 'topright',
 		//layer: proportioinalSymbols,
 	});
 
-	legend.onAdd = function (mymap) {
+	menu.onAdd = function (mymap) {
 		var div = L.DomUtil.create('div', 'dropdown');
 		div.innerHTML = '<select><option>1</option><option>2</option><option>3</option></select>';
 		div.firstChild.onmousedown = div.firstChild.ondblclick = L.DomEvent.stopPropagation;
 		return div;
 	};
 
-	legend.addTo(mymap);
+	menu.addTo(mymap);
+	$("#left-pane").append(this.menu);
 
 }
 
