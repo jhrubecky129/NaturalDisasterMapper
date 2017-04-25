@@ -8,7 +8,7 @@ body {
   position: absolute;
   top: 2%;
   text-align: left;
-  font-size: 45px;
+  font-size: 50px;
   font-family: Arial;
   color: #e0b574;
   text-shadow:
@@ -37,12 +37,28 @@ body {
 }
 
 .legend-control-container {
-
   background-color: rgba(255,255,255,0.8);
-  
   text-align: center;
   border: solid gray 1.5px;
   border-radius: 1em;
+}
+
+#temporal-legend {
+  line-height: 15px;
+  padding: 3px;
+  text-align: center;
+  font-family: Helvetica, sans-serif;
+}
+
+.sequence-control-container {
+    width: 285px;
+    height: 28px;
+    background-color: rgba(255,255,255,0.8);
+    padding: 6px;
+    line-height: 38px;
+    text-align: center;
+    border: solid gray 1.5px;
+    border-radius: 1em;
 }
 
 #left-pane {
@@ -75,4 +91,30 @@ body {
   border-width: thin;
   border-color: black;
   border-radius: 1em;
+}
+
+.range-slider {
+    width: 200px;
+}
+
+#forward {
+    float: right;
+    line-height: 18px;
+    border-radius: 5px;
+    border: solid black 1px;
+    font-size: 15px;
+    width: 30px;
+}
+
+#reverse {
+    float: left;
+    line-height: 18px;
+    border-radius: 5px;
+    border: solid black 1px;
+    font-size: 15px;
+    width: 30px;
+}
+
+.leaflet-popup-content p {
+  margin:  0.2em 0;
 }

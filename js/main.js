@@ -5,8 +5,7 @@ function initialize(){
 };
 
 // Title
-$("#title").append("<b>Natural Disaster Mapper</b>");
-
+$("#title").append("Natural Disaster Mapper");
 
 // sets map element and its properties
 function createMap() {
@@ -23,49 +22,132 @@ function createMap() {
 		attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
 	}).addTo(mymap);
 
-	//add navigation bar to the map
+		//add navigation bar to the map
 	L.control.navbar().addTo(mymap);
 
 	getData(mymap);
+	layers(mymap);
+
+}; // close to createMap
+
+
+
+
+// function to add the different geojson layers
+function layers(mymap) {
+
+	// non-SW United States Region
+	var states = $.ajax("data/states_excluding_SW.geojson", {
+		dataType: "json",
+		success: function(response){
+			L.geoJson(response, {style: statesStyle}).addTo(mymap).bringToBack();
+		}
+	});
+
+	// 6 states of interest
+	var swStates = $.ajax("data/sw_states.geojson", {
+		dataType: "json",
+		success: function(response){
+			L.geoJson(response, {style: swStyle}).addTo(mymap).bringToBack();
+		}
+	});
+
+	// counties for the 6 SW states
+	var counties = $.ajax("data/counties.geojson", {
+		dataType: "json",
+		success: function(response){
+			L.geoJson(response, {style: swStyle}).bringToFront();//.addTo(mymap).bringToFront();
+		}
+	});
+
+	// mymap.on('zoomend', function (e) {
+	//     changeLayers(mymap, swStates, counties);
+	// });
+
+	// console.log(mymap.getZoom());
+	// mymap.on('zoomend', function () {
+	//     if (mymap.getZoom() >= 7 ) {
+	//         mymap.removeLayer(swStates);
+	// 				mymap.addLayer(counties);
+	//     };
+	// 		if (mymap.getZoom() < 7 ) {
+	//         mymap.addLayer(swStates);
+	// 				mymap.removeLayer(counties);
+	//     };
+	// });
+
 
 };
+
+
+function clean_map(mymap) {
+    mymap.eachLayer(function (layer) {
+        if (layer instanceof L.GeoJSON)
+
+        {
+            mymap.removeLayer(layer);
+
+        }
+        console.log(layer);
+    });
+}
+
+
+function changeLayers(mymap, swStates, counties) {
+
+	 if (mymap.getZoom() >= 7 ) {
+	   clean_map();
+		 counties.addTo(mymap);
+	 } else if (mymap.getZoom() < 7 ) {
+		 clean_map();
+	   swStates.addTo(mymap);
+	 };
+}
+
 
 // assigns the respected geojsons to the apropriate variables
 function getData(mymap) {
 
-	var county_events = $.ajax("data/county_events.geojson", {
+	var state_events = $.ajax("data/state_events.geojson", {
 		dataType: "json",
 		success: function(response){
-			// add in later L.geoJson(response).addTo(mymap);
+			//L.geoJson(response).addTo(mymap);
 
 			// creating an array of attributes
 			var attributes = processData(response);
 
 			// call function to create proportional symbols
       createPropSymbols(response, mymap, attributes);
+			createSequenceControls(mymap, attributes);
 			createLegend(mymap, attributes);
 		}
 	});
 
-	//counties.setStyle
-
-	var states = $.ajax("data/states_excluding_SW.geojson", {
-		dataType: "json",
-		success: function(response){
-			L.geoJson(response).addTo(mymap);
-		}
-	});
-
-	/* Currently lays over symbols and can't retrieve */
-
-	// var counties = $.ajax("data/counties.geojson", {
-	// 	dataType: "json",
-	// 	success: function(response){
-	// 		L.geoJson(response).addTo(mymap);
-	// 	}
-	// });
-
 }; // close to getData
+
+
+// styling for more SW Region
+function swStyle() {
+	return {
+		fillColor: 'white',
+		weight: 2,
+		opacity: 1,
+		color: 'white',
+		fillOpacity: 0,
+	};
+};
+
+// styling for more opaque geojson
+function statesStyle() {
+	return {
+		fillColor: 'gray',
+		weight: 2,
+		opacity: 1,
+		color: 'black',
+		fillOpacity: 0.7
+	};
+};
+
 
 // build an attributes array for the data
 function processData(data){
@@ -106,6 +188,10 @@ function processData(data){
 
 }; // close to processData
 
+
+
+
+
 // add circle markers for point features to the map
 function createPropSymbols(data, mymap, attributes){
 
@@ -116,8 +202,6 @@ function createPropSymbols(data, mymap, attributes){
     }
   }).addTo(mymap);
 
-	proportionalSymbols.bringToFront();
-
   // call search function
   search(mymap, data, proportionalSymbols)
 
@@ -125,6 +209,9 @@ function createPropSymbols(data, mymap, attributes){
 	dropdown(mymap, data, attributes, proportionalSymbols)
 
 }; // close to createPropSymbols
+
+
+
 
 
 // function to convert markers to circle markers
@@ -135,7 +222,7 @@ function pointToLayer(feature, latlng, attributes, layer){
 
   // create marker options
   var options = {
-    fillColor: "#FFF",
+    fillColor: "#FFD700",
     color: "#000",
     weight: 1,
     opacity: 1,
@@ -147,7 +234,7 @@ function pointToLayer(feature, latlng, attributes, layer){
 
   // calculate the radius and assign it to the radius of the options marker.
   // Multiplied by 10
-  options.radius = calcPropRadius((attValue * 20));
+  options.radius = calcPropRadius((attValue) * 2);
 
   // assign the marker with the options styling and using the latlng repsectively
   var layer = L.circleMarker(latlng, options);
@@ -165,7 +252,10 @@ function pointToLayer(feature, latlng, attributes, layer){
     },
     mouseout: function(){
       this.closePopup();
-    }
+    },
+		click: function(){
+			// click function code
+		}
   });
 
   // return the circle marker to the L.geoJson pointToLayer option
@@ -198,7 +288,7 @@ function Popup(properties, layer, radius){
   // creating the Popup object that can then be used more universally
   this.properties = properties;
   this.layer = layer;
-  this.content = "<p><b>County:</b> " + this.properties.County + "</p>";
+  this.content = "<p><b>State:</b> " + this.properties.State + "</p>";
 
   this.bindToLayer = function(){
     this.layer.bindPopup(this.content, {
@@ -209,6 +299,8 @@ function Popup(properties, layer, radius){
 }; // close to Popup function
 
 
+
+
 // funtion to create the search control
 function search (mymap, data, proportionalSymbols){
 
@@ -216,7 +308,7 @@ function search (mymap, data, proportionalSymbols){
   var searchLayer = new L.Control.Search({
     position: 'topright',  // positions the operator in the top left of the screen
     layer: proportionalSymbols,  // use proportionalSymbols as the layer to search through
-    propertyName: 'County',  // search for State name
+    propertyName: 'State',  // search for State name
     marker: false,
     moveToLocation: function (latlng, title, mymap) {
 
@@ -234,8 +326,94 @@ function search (mymap, data, proportionalSymbols){
 
 
 
+// Create new sequence controls
+function createSequenceControls(mymap, attributes, index){
 
-function dropdown(mymap, data, proportioinalSymbols) {
+  // position the sequence control in the bottom left of the map
+  var SequenceControl = L.Control.extend({
+    options: {
+      position: 'bottomright'
+    },
+
+    onAdd: function (mymap) {
+
+      // create the control container div with a particular class name
+      var container = L.DomUtil.create('div', 'sequence-control-container');
+
+      //creates range input element (slider)
+      $(container).append('<input class="range-slider" type="range">');
+
+      //add forward and reverse buttons
+      $(container).append('<button class="skip" id="reverse" title="Reverse"><b><</b></button>');
+      $(container).append('<button class="skip" id="forward" title="Forward"><b>></b></button>');
+
+      //turn off any mouse event listeners on the sequence control
+      $(container).on('mousedown dblclick', function(e){
+        L.DomEvent.stopPropagation(e);
+      });
+
+      return container;
+
+    } // close to onAdd
+  }); // close to var SequenceControl
+
+  // add the Sequence Control to the map
+  mymap.addControl(new SequenceControl());
+
+  //set slider attributes
+  $('.range-slider').attr({
+    max: 6,
+    min: 0,
+    value: 0,
+    step: 1
+  });
+
+  // input listener for slider
+  $('.range-slider').on('input', function(){
+    // get the new index value
+    var index = $(this).val();
+
+    // update the proportional symbols based off of the slider
+    updatePropSymbols(mymap, attributes[index]);
+
+  });
+
+  // when the skip button is clicked
+  $('.skip').click(function(){
+
+    // get the old index value
+    var index = $('.range-slider').val();
+
+    // if forward button is clicked
+    if ($(this).attr('id') == 'forward'){
+
+      // increment index
+      index++;
+      // if past the last attribute, wrap around to first attribute
+      index = index > 6 ? 0 : index;
+
+    } else if ($(this).attr('id') == 'reverse'){ // if reverse button is clicked
+
+      // decrement index
+      index--;
+      // if past the first attribute, wrap around to last attribute
+      index = index < 0 ? 6 : index;
+
+    };
+
+    // update slider
+    $('.range-slider').val(index);
+
+    // update the proportional symbols based off of the skip buttons clicked
+    updatePropSymbols(mymap, attributes[index]);
+
+  }); // close to '.skip' click function
+
+}; // close to createSequenceControls function
+
+
+
+function dropdown(mymap, data, proportionalSymbols) {
 
 	var legend = new L.control({
 		//position: 'topright',
@@ -287,7 +465,7 @@ function createLegend(mymap, attributes){
       for (var circle in circles){
 
         //c ircle string
-        svg += '<circle class="legend-circle" id="' + circle + '" fill="#fff" fill-opacity="0.8" stroke="#000000" cx="50"/>';
+        svg += '<circle class="legend-circle" id="' + circle + '" fill="#FFD700" fill-opacity="0.8" stroke="#000000" cx="50"/>';
 
         // text string
         svg += '<text id="' + circle + '-text" x="90" y="' + circles[circle] + '"></text>';
@@ -380,7 +558,7 @@ function updateLegend(mymap, attribute){
   for (var key in circleValues){
 
        //get the radius
-       var radius = calcPropRadius((circleValues[key])* 20);
+       var radius = calcPropRadius((circleValues[key]) * 2);
 
        // assign the cy and r attributes
        $('#' + key).attr({
@@ -389,9 +567,60 @@ function updateLegend(mymap, attribute){
        });
 
        // add legend text for the circles
-       $('#' + key + '-text').text(Math.round((circleValues[key]) * 20));
+       $('#' + key + '-text').text(Math.round((circleValues[key])));
    };
 };
+
+
+
+
+// function to resize proportional symbols according to new attribute values
+function updatePropSymbols(mymap, attribute){
+
+  // for each layer of the map
+  mymap.eachLayer(function(layer){
+
+    // if the layer contains both the layer feature and properties with attributes
+    if (layer.feature && layer.feature.properties[attribute]){
+
+      // access feature properties
+      var props = layer.feature.properties;
+
+      // subtract one because all pop growths will be at 1._ _ something, so we
+      // want more variation
+      var attValue = Number(props[attribute]);
+
+      // multiply by 1000 to give us variation between the originally small growth
+      // numbers
+      var radius = calcPropRadius(attValue * 2);
+
+      // set the updated radius to the layer
+      layer.setRadius(radius);
+
+      // new Popup
+      var popup = new Popup(props, layer, radius);
+
+      //add popup to circle marker
+      popup.bindToLayer();
+
+      //event listeners to open popup on hover
+      layer.on({
+        mouseover: function(){
+          this.openPopup();
+        },
+        mouseout: function(){
+          this.closePopup();
+        },
+        click: function(){
+						// click content
+        }
+      }); // close to layer.on
+
+    }; // close to if statement
+
+  }); // close to eachLayer function
+  updateLegend(mymap, attribute); // update the temporal-legend
+}; // close to updatePropSymbols function
 
 // function callback(response, status, jqXHRobject){
 // 	console.log(response)
