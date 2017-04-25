@@ -77,6 +77,10 @@ body {
   border-radius: 1em;
 }
 
+.dropdown{
+  text-align: center;
+}
+
 #right-pane {
   position: fixed;
   display: inline-block;
