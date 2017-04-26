@@ -45,13 +45,12 @@ body {
 
 #temporal-legend {
   line-height: 15px;
-  padding: 3px;
   text-align: center;
   font-family: Helvetica, sans-serif;
 }
 
 .sequence-control-container {
-    width: 285px;
+    width: 235px;
     height: 28px;
     background-color: rgba(255,255,255,0.8);
     padding: 6px;
@@ -77,6 +76,10 @@ body {
   border-radius: 1em;
 }
 
+.dropdown{
+  text-align: center;
+}
+
 #right-pane {
   position: fixed;
   display: inline-block;
@@ -94,7 +97,7 @@ body {
 }
 
 .range-slider {
-    width: 200px;
+    width: 150px;
 }
 
 #forward {
@@ -113,6 +116,13 @@ body {
     border: solid black 1px;
     font-size: 15px;
     width: 30px;
+}
+
+.chart {
+    background-color: black;
+    border: medium solid #999;
+    display: block;
+    margin: auto;
 }
 
 .leaflet-popup-content p {

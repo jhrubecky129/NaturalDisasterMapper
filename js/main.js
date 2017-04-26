@@ -1,7 +1,8 @@
 /* Script by Jacob P. Hrubecky, David J. Waro, Peter Nielsen, 2017 */
 
 function initialize(){
-	createMap();
+	// 1. createMap();
+	getData();
 };
 
 // Title
@@ -13,7 +14,7 @@ function createMap() {
 	var mymap = L.map('mapid').setView([37.0866, -115.00], 5);
 
 	mymap.setMaxBounds([
-		[10, -200],
+		[0, -200],
 		[75, -20],
 	]).setMinZoom(3);
 
@@ -25,7 +26,7 @@ function createMap() {
 		//add navigation bar to the map
 	L.control.navbar().addTo(mymap);
 
-	getData(mymap);
+	// 1. getData(mymap);
 	layers(mymap);
 
 }; // close to createMap
@@ -36,105 +37,76 @@ function createMap() {
 // function to add the different geojson layers
 function layers(mymap) {
 
-	// non-SW United States Region
-	var states = $.ajax("data/states_excluding_SW.geojson", {
+	// var events = new L.GeoJSON.AJAX("data/county_events.geojson");
+	// events.addTo(mymap);
+
+	var states = new L.GeoJSON.AJAX("data/states_excluding_SW.geojson", {style: statesStyle});
+	states.addTo(mymap).bringToBack();
+
+	var swStates = new L.GeoJSON.AJAX("data/sw_states.geojson", {style: swStyle});
+	swStates.addTo(mymap).bringToFront();
+
+	var counties = new L.GeoJSON.AJAX("data/counties.geojson", {style: swStyle}).bringToBack();
+
+	var events = $.ajax("data/state_events.geojson", {
 		dataType: "json",
 		success: function(response){
-			L.geoJson(response, {style: statesStyle}).addTo(mymap).bringToBack();
-		}
-	});
-
-	// 6 states of interest
-	var swStates = $.ajax("data/sw_states.geojson", {
-		dataType: "json",
-		success: function(response){
-			L.geoJson(response, {style: swStyle}).addTo(mymap).bringToBack();
-		}
-	});
-
-	// counties for the 6 SW states
-	var counties = $.ajax("data/counties.geojson", {
-		dataType: "json",
-		success: function(response){
-			//L.geoJson(response, {style: swStyle}).bringToFront().addTo(mymap);
-		}
-	});
-
-	// mymap.on('zoomend', function (e) {
-	// 	console.log("zoom:" + mymap.getZoom());
-	//     changeLayers(mymap, swStates, counties);
-	// });
-
-	// console.log(mymap.getZoom());
-	// mymap.on('zoomend', function () {
-	//     if (mymap.getZoom() >= 7 ) {
-	//         mymap.removeLayer(swStates);
-	// 				mymap.addLayer(counties);
-	//     };
-	// 		if (mymap.getZoom() < 7 ) {
-	//         mymap.addLayer(swStates);
-	// 				mymap.removeLayer(counties);
-	//     };
-	// });
-
-
-};
-
-
-function clean_map(mymap) {
-    mymap.eachLayer(function (layer) {
-        if (layer instanceof L.GeoJSON)
-
-        {
-            mymap.removeLayer(layer);
-
-        }
-        console.log(layer);
-    });
-}
-
-
-function changeLayers(mymap, swStates, counties) {
-
-	 if (mymap.getZoom() >= 7 ) {
-
-		 mymap.removeLayer(swStates);
-		 //clean_map();
-		 mymap.addLayer(counties);
-
-	 } else if (mymap.getZoom() < 7 ) {
-		 //clean_map();
-		 mymap.removeLayer(counties);
-	   my(mymap);
-	 };
-}
-
-
-// assigns the respected geojsons to the apropriate variables
-function getData(mymap) {
-
-	// d3.queue()
-	// 		.defer(d3.json, "data/state_events.geojson") // load attributes from csv
-	// 		.defer(d3.json, "data/NZ_Boundaries.topojson") // spatial data
-	// 		.await(callback);
-
-	var state_events = $.ajax("data/state_events.geojson", {
-		dataType: "json",
-		success: function(response){
-			//L.geoJson(response).addTo(mymap);
 
 			// creating an array of attributes
 			var attributes = processData(response);
 
 			// call function to create proportional symbols
-      createPropSymbols(response, mymap, attributes);
+			createPropSymbols(response, mymap, attributes);
 			createSequenceControls(mymap, attributes);
 			createLegend(mymap, attributes);
 		}
 	});
 
+
+	mymap.on('zoomend', function (e) {
+		console.log("zoom: " + mymap.getZoom());
+	    changeLayers(mymap, swStates, counties);
+	});
+}; // close to layers function
+
+
+
+
+function changeLayers(mymap, swStates, counties) {
+	if (mymap.getZoom() >= 7) {
+		mymap.removeLayer(swStates);
+		counties.addTo(mymap).bringToBack();
+	} else if (mymap.getZoom() < 7) {
+		mymap.removeLayer(counties);
+		swStates.addTo(mymap).bringToBack();
+	};
+};
+
+
+// assigns the respected geojsons to the apropriate variables
+function getData(mymap) {
+
+	d3.queue()
+			.defer(d3.json, "data/state_events.geojson") // load attributes from csv
+			.defer(d3.json, "data/county_events.geojson")
+			.defer(d3.csv, "data/county_events.csv")
+			.defer(d3.json, "data/counties.geojson")
+			.defer(d3.json, "data/sw_states.geojson")
+			.defer(d3.json, "states_excluding_SW.geojson")
+			.await(callback);
+
+	// if (mymap.getZoom() >= 7) {
+	// 		eventLayer = "data/county_events.geojson";
+	// } else if (mymap.getZoom() < 7 ) {
+	// 		eventLayer = "data/state_events.geojson";
+	// }
+
 }; // close to getData
 
+function callback(error, csvData){
+    createMap();
+ 		stateGraph('data/state_events.csv');
+};
 
 // styling for more SW Region
 function swStyle() {
@@ -142,7 +114,7 @@ function swStyle() {
 		fillColor: 'white',
 		weight: 2,
 		opacity: 1,
-		color: 'black',
+		color: 'white',
 		fillOpacity: 0,
 	};
 };
@@ -153,11 +125,15 @@ function statesStyle() {
 		fillColor: 'gray',
 		weight: 2,
 		opacity: 1,
-		color: 'black',
+		color: 'white',
 		fillOpacity: 0.7
 	};
 };
 
+
+function events(){
+
+};
 
 // build an attributes array for the data
 function processData(data){
@@ -216,11 +192,9 @@ function createPropSymbols(data, mymap, attributes){
   search(mymap, data, proportionalSymbols)
 
 	// call to create the dropdown menu
-	dropdown(mymap, data, attributes, proportionalSymbols)
+	dropdown(mymap, attributes);
 
 }; // close to createPropSymbols
-
-
 
 
 
@@ -346,7 +320,7 @@ function createSequenceControls(mymap, attributes, index){
   // position the sequence control in the bottom left of the map
   var SequenceControl = L.Control.extend({
     options: {
-      position: 'bottomright'
+      position: 'bottomleft'
     },
 
     onAdd: function (mymap) {
@@ -427,83 +401,49 @@ function createSequenceControls(mymap, attributes, index){
 
 
 // var to create a dropdown menu
-function dropdown(mymap, data, proportionalSymbols) {
+function dropdown(mymap, attributes) {
 
-	var menu = new L.control({
-		//position: 'topright',
-		//layer: proportioinalSymbols,
-	});
+	var dropdown = L.DomUtil.create('div', 'dropdown');
+	dropdown.innerHTML = '<select><option>1</option><option>2</option><option>3</option></select>';
+	dropdown.firstChild.onmousedown = dropdown.firstChild.ondblclick = L.DomEvent.stopPropagation;
 
-	menu.onAdd = function (mymap) {
-		var div = L.DomUtil.create('div', 'dropdown');
-		div.innerHTML = '<select><option>1</option><option>2</option><option>3</option></select>';
-		div.firstChild.onmousedown = div.firstChild.ondblclick = L.DomEvent.stopPropagation;
-		return div;
-	};
-
-	menu.addTo(mymap);
-	$("#left-pane").append(this.menu);
+	$("#left-pane").append(dropdown);
 
 }
-
 
 
 
 // function to create the Proportional Symbols map legend
 function createLegend(mymap, attributes){
 
-  // legend control in the bottom right of the map
-  var LegendControl = L.Control.extend({
-    options: {
-      position: 'bottomleft'
-    },
-
-
-    onAdd: function (mymap) {
-
-      // create the control container with a particular class name
-      var legendContainer = L.DomUtil.create('div', 'legend-control-container');
-
-      $(legendContainer).append('<div id="temporal-legend" >');
+      $('#left-pane').append('<div id="temporal-legend" >');
 
       // start attribute legend svg string
-      var svg = '<svg id="attribute-legend" width="140px" height="80px">';
+      var svg = '<svg id="attribute-legend" width="200px" height="500px">';
 
       //object to base loop on
       var circles = {
         max: 30,
-        mean: 50,
-        min: 70
+        mean: 80,
+        min: 130
       };
 
       // loop to add each circle and text to svg string
       for (var circle in circles){
 
         //c ircle string
-        svg += '<circle class="legend-circle" id="' + circle + '" fill="#FFD700" fill-opacity="0.8" stroke="#000000" cx="50"/>';
+        svg += '<circle class="legend-circle" id="' + circle + '" fill="#FFD700" fill-opacity="0.8" stroke="#000000" cx="70"/>';
 
         // text string
-        svg += '<text id="' + circle + '-text" x="90" y="' + circles[circle] + '"></text>';
+        svg += '<text id="' + circle + '-text" x="150" y="' + circles[circle] + '"></text>';
       };
 
       // close svg string
       svg += "</svg>";
 
-      // add attribute legend svg to container
-      $(legendContainer).append(svg);
+			// add attribute legend svg to container
+      $('#left-pane').append(svg);
 
-      //t urn off any mouse event listeners on the legend
-      $(legendContainer).on('mousedown dblclick', function(e){
-        L.DomEvent.stopPropagation(e);
-      });
-
-      return legendContainer;
-
-    } // close to onAdd
-  }); // close to var LegendControl
-
-  // add the legendControl to the map and update it
-  mymap.addControl(new LegendControl());
   updateLegend(mymap, attributes[0]);
 
 }; // close to createLegend function
@@ -577,7 +517,7 @@ function updateLegend(mymap, attribute){
 
        // assign the cy and r attributes
        $('#' + key).attr({
-           cy: 75 - radius,
+           cy: 130 - radius,
            r: radius
        });
 
@@ -637,8 +577,22 @@ function updatePropSymbols(mymap, attribute){
   updateLegend(mymap, attribute); // update the temporal-legend
 }; // close to updatePropSymbols function
 
-// function callback(response, status, jqXHRobject){
-// 	console.log(response)
-// }
+
+// create graph for the initial state view
+function stateGraph(csvData){
+    // svg to contain chart
+    var vis = d3.select('#right-pane')
+        .append('svg')
+        .attr('width', window.innerWidth * 0.15)
+        .attr('height', window.innerWidth * 0.15)
+        .style('right', window.innerWidth * .01)
+        .attr("class", "chart");
+
+    // lines for line graph
+    var lines = vis.selectAll('.bars')
+        .data(csvData)
+        .enter()
+        .append()
+}
 
 $(document).ready(initialize);
