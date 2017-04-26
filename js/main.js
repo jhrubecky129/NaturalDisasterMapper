@@ -128,6 +128,7 @@ function getData(mymap) {
       createPropSymbols(response, mymap, attributes);
 			createSequenceControls(mymap, attributes);
 			createLegend(mymap, attributes);
+			dropdown(mymap, attributes);
 		}
 	});
 
@@ -214,7 +215,7 @@ function createPropSymbols(data, mymap, attributes){
   search(mymap, data, proportionalSymbols)
 
 	// call to create the dropdown menu
-	dropdown(mymap, data, attributes, proportionalSymbols)
+
 
 }; // close to createPropSymbols
 
@@ -318,7 +319,7 @@ function search (mymap, data, proportionalSymbols){
 
   // new variable search control
   var searchLayer = new L.Control.Search({
-    position: 'topright',  // positions the operator in the top left of the screen
+    position: 'topleft',  // positions the operator in the top left of the screen
     layer: proportionalSymbols,  // use proportionalSymbols as the layer to search through
     propertyName: 'State',  // search for State name
     marker: false,
@@ -345,7 +346,7 @@ function createSequenceControls(mymap, attributes, index){
   var SequenceControl = L.Control.extend({
     options: {
       position: 'bottomright'
-    },
+			},
 
     onAdd: function (mymap) {
 
@@ -425,22 +426,16 @@ function createSequenceControls(mymap, attributes, index){
 
 
 // var to create a dropdown menu
-function dropdown(mymap, data, proportionalSymbols) {
+function dropdown(mymap, attributes) {
 
-	var menu = new L.control({
-		//position: 'topright',
-		//layer: proportioinalSymbols,
-	});
 
-	menu.onAdd = function (mymap) {
-		var div = L.DomUtil.create('div', 'dropdown');
-		div.innerHTML = '<select><option>1</option><option>2</option><option>3</option></select>';
-		div.firstChild.onmousedown = div.firstChild.ondblclick = L.DomEvent.stopPropagation;
-		return div;
-	};
 
-	menu.addTo(mymap);
-	$("#left-pane").append(this.menu);
+
+		var dropdown = L.DomUtil.create('div', 'dropdown');
+		dropdown.innerHTML = '<select><option>1</option><option>2</option><option>3</option></select>';
+		dropdown.firstChild.onmousedown = dropdown.firstChild.ondblclick = L.DomEvent.stopPropagation;
+
+		$("#left-pane").append(dropdown);
 
 }
 
@@ -451,18 +446,9 @@ function dropdown(mymap, data, proportionalSymbols) {
 function createLegend(mymap, attributes){
 
   // legend control in the bottom right of the map
-  var LegendControl = L.Control.extend({
-    options: {
-      position: 'bottomleft'
-    },
 
 
-    onAdd: function (mymap) {
-
-      // create the control container with a particular class name
-      var legendContainer = L.DomUtil.create('div', 'legend-control-container');
-
-      $(legendContainer).append('<div id="temporal-legend" >');
+      $('#left-pane').append('<div id="temporal-legend" >');
 
       // start attribute legend svg string
       var svg = '<svg id="attribute-legend" width="140px" height="80px">';
@@ -488,20 +474,12 @@ function createLegend(mymap, attributes){
       svg += "</svg>";
 
       // add attribute legend svg to container
-      $(legendContainer).append(svg);
+      $('#left-pane').append(svg);
 
       //t urn off any mouse event listeners on the legend
-      $(legendContainer).on('mousedown dblclick', function(e){
-        L.DomEvent.stopPropagation(e);
-      });
 
-      return legendContainer;
-
-    } // close to onAdd
-  }); // close to var LegendControl
 
   // add the legendControl to the map and update it
-  mymap.addControl(new LegendControl());
   updateLegend(mymap, attributes[0]);
 
 }; // close to createLegend function
