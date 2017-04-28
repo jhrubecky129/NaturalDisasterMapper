@@ -1,17 +1,20 @@
 /* Script by Jacob P. Hrubecky, David J. Waro, Peter Nielsen, 2017 */
 
 function initialize(){
-	// 1. createMap();
 	getData();
 };
 
 // Title
 $("#title").append("Natural Disaster Mapper");
 
+
+
 // sets map element and its properties
 function createMap() {
 
-	var mymap = L.map('mapid').setView([37.0866, -115.00], 5);
+	var mymap = L.map('mapid', {
+		//layers: [totalEventsOverlay]
+	}).setView([37.0866, -115.00], 5);
 
 	mymap.setMaxBounds([
 		[0, -200],
@@ -28,9 +31,9 @@ function createMap() {
 
 	// 1. getData(mymap);
 	layers(mymap);
+	getOverlayData(mymap);
 
 }; // close to createMap
-
 
 
 
@@ -48,7 +51,7 @@ function layers(mymap) {
 
 	var counties = new L.GeoJSON.AJAX("data/counties.geojson", {style: swStyle}).bringToBack();
 
-	var events = $.ajax("data/state_events.geojson", {
+	var events = $.ajax("data/County_events.geojson", {
 		dataType: "json",
 		success: function(response){
 
@@ -92,7 +95,7 @@ function getData(mymap) {
 			.defer(d3.csv, "data/county_events.csv")
 			.defer(d3.json, "data/counties.geojson")
 			.defer(d3.json, "data/sw_states.geojson")
-			.defer(d3.json, "states_excluding_SW.geojson")
+			.defer(d3.json, "data/states_excluding_SW.geojson")
 			.await(callback);
 
 	// if (mymap.getZoom() >= 7) {
@@ -208,9 +211,6 @@ function createPropSymbols(data, mymap, attributes){
   // call search function
   search(mymap, data, proportionalSymbols)
 
-	// call to create the dropdown menu
-	dropdown(mymap, attributes);
-
 }; // close to createPropSymbols
 
 
@@ -293,7 +293,7 @@ function Popup(properties, layer, radius){
   // creating the Popup object that can then be used more universally
   this.properties = properties;
   this.layer = layer;
-  this.content = "<p><b>State:</b> " + this.properties.State + "</p>";
+  this.content = "<p><b>Location:</b> " + this.properties.Location + "</p>";
 
   this.bindToLayer = function(){
     this.layer.bindPopup(this.content, {
@@ -313,7 +313,7 @@ function search (mymap, data, proportionalSymbols){
   var searchLayer = new L.Control.Search({
     position: 'topleft',  // positions the operator in the top left of the screen
     layer: proportionalSymbols,  // use proportionalSymbols as the layer to search through
-    propertyName: 'State',  // search for State name
+    propertyName: 'Location',  // search for State name
     marker: false,
     moveToLocation: function (latlng, title, mymap) {
 
@@ -421,8 +421,11 @@ function createSequenceControls(mymap, attributes, index){
 // var to create a dropdown menu
 function dropdown(mymap, attributes) {
 	var dropdown = L.DomUtil.create('div', 'dropdown');
-	dropdown.innerHTML = '<select><option>1</option><option>2</option><option>3</option></select>';
-	dropdown.firstChild.onmousedown = dropdown.firstChild.ondblclick = L.DomEvent.stopPropagation;
+	dropdown.innerHTML = 'Select an Event<select><option value="stateTotalEventsLayer">Total Events</option><option>Avalanche</option>'+
+	'<option>Blizzard</option><option value="stateDroughtsLayer">Drought</option><option>Excessive Heat</option>'+
+	'<option>Extreme Cold/ Wind Chill</option><option>Tornado</option><option value="statesWildfiresLayer">Wildfire</option></select>';
+
+
 
 	$("#left-pane").append(dropdown);
 		var dropdown = L.DomUtil.create('div', 'dropdown');
@@ -433,6 +436,145 @@ function dropdown(mymap, attributes) {
 
 }
 
+
+//Get data using jquery ajax method
+function getOverlayData(mymap, attributes) {
+
+	$.ajax("data/state_events.geojson", {
+		dataType: "json",
+		success: function (response) {
+
+			//marker style options are set to a variable
+			var geojsonMarkerOptions = {
+				radius: 10,
+				fillColor: "#6495ED",
+		    color: "#000",
+		    weight: 1,
+		    opacity: 1,
+		    fillOpacity: 0.7
+			};
+
+			//geoJSON layer with leaflet is created to add data to the map
+			var stateTotalEventsLayer = L.geoJson(response, {
+				//pointToLayer is used to change the marker features to circle markers,
+				pointToLayer: function (feature, latlng) {
+					return L.circleMarker (latlng, geojsonMarkerOptions);
+				}
+			});
+
+			//function to size the overlay data according to total events
+			stateTotalEventsLayer.eachLayer(function(layer){
+				//total events property is set to props
+				var props = layer.feature.properties.Total_Events_2000;
+				// the radius is calculated using the calcPropSymbols function
+				var radius = calcPropRadius(props);
+				//the radius is set to the data layer
+				layer.setRadius(radius);
+			});
+
+			//geoJSON layer with leaflet is created to add data to the map
+			var stateWildfiresLayer = L.geoJson(response, {
+				//pointToLayer is used to change the marker features to circle markers,
+				pointToLayer: function (feature, latlng) {
+					return L.circleMarker (latlng, geojsonMarkerOptions);
+						}
+			});
+
+			//function to size the overlay data according to wildfires
+			stateWildfiresLayer.eachLayer(function(layer){
+				// wildfire event
+				var mops = layer.feature.properties.Wildfire_2000;
+				// the radius is calculated using the calcPropSymbols function
+				var radius1 = calcPropRadius(mops);
+				//the radius is set to the data layer
+				layer.setRadius(radius1);
+			});
+
+			//geoJSON layer with leaflet is created to add data to the map
+			var stateDroughtsLayer = L.geoJson(response, {
+				//pointToLayer is used to change the marker features to circle markers,
+				pointToLayer: function (feature, latlng) {
+					return L.circleMarker (latlng, geojsonMarkerOptions);
+						}
+			});
+
+			//function to size the overlay data according to wildfires
+			stateDroughtsLayer.eachLayer(function(layer){
+				// wildfire event
+				var a = layer.feature.properties.Drought_2000;
+				// the radius is calculated using the calcPropSymbols function
+				var radius2 = calcPropRadius(a);
+				//the radius is set to the data layer
+				layer.setRadius(radius2);
+			});
+
+			//geoJSON layer with leaflet is created to add data to the map
+			var stateAvalanchesLayer = L.geoJson(response, {
+				//pointToLayer is used to change the marker features to circle markers,
+				pointToLayer: function (feature, latlng) {
+					return L.circleMarker (latlng, geojsonMarkerOptions);
+						}
+			});
+
+			//function to size the overlay data according to wildfires
+			stateAvalanchesLayer.eachLayer(function(layer){
+				// wildfire event
+				var b = layer.feature.properties.Avalanche_2000;
+				// the radius is calculated using the calcPropSymbols function
+				var radius3 = calcPropRadius(b);
+				//the radius is set to the data layer
+				layer.setRadius(radius3);
+			});
+
+			//leaflet overlay control to add the overlay data
+			var totalEventsOverlay = {
+			"<span class = 'overlayText'>State Total Events</span>": stateTotalEventsLayer
+			};
+			var avalanches = {
+			"<span class = 'overlayText'>Avalanches</span>": stateAvalanchesLayer
+			};
+			var droughts = {
+			"<span class = 'overlayText'>Droughts</span>": stateDroughtsLayer
+			};
+			var wildfires = {
+			"<span class = 'overlayText'>Wildfires</span>": stateWildfiresLayer
+			};
+
+
+
+			var layerOptions = {
+    		"Total Events": stateTotalEventsLayer,
+				"Avalanche": stateAvalanchesLayer,
+				"Drought": stateDroughtsLayer,
+    		"Wildfire": stateWildfiresLayer,
+			};
+
+
+			//adding the control to the map
+			var j = L.control.layers(layerOptions).addTo(mymap);
+
+			// // call to create the dropdown menu
+			// dropdown(mymap, attributes);
+			//
+			// $(".dropdown select").on("change", function(g) {
+			// 	console.log("target value: " + g.target.value);
+			//
+			// 	var milk = g.target.value;
+			// 	console.log(milk);
+			//
+			//
+			//
+			// 	console.log(stateDroughtsLayer);
+			// 	console.log(cabbage);
+			// 	console.log(cabbage.Droughts);
+			// 	console.log(cabbage.value);
+			// 	console.log("boolean: " + g.target.value == cabbage[1]);
+			// });
+
+		}
+
+	});
+};
 
 
 // function to create the Proportional Symbols map legend
@@ -445,9 +587,9 @@ function createLegend(mymap, attributes){
 
       //object to base loop on
       var circles = {
-        max: 30,
-        mean: 80,
-        min: 130
+        max: 65,
+        mean: 95,
+        min: 125
       };
 
       // loop to add each circle and text to svg string

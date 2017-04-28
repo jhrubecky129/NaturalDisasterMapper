@@ -4,7 +4,7 @@
     {
       "type": "Feature",
       "properties": {
-        "State": "California",
+        "Location": "California",
         "Total_Events_2000": 74,
         "Total_Events_2001": 125,
         "Total_Events_2002": 180,
@@ -34,7 +34,7 @@
     {
       "type": "Feature",
       "properties": {
-        "State": "Nevada",
+        "Location": "Nevada",
         "Total_Events_2000": 4,
         "Total_Events_2001": 3,
         "Total_Events_2002": 2,
@@ -64,7 +64,7 @@
     {
       "type": "Feature",
       "properties": {
-        "State": "Arizona",
+        "Location": "Arizona",
         "Total_Events_2000": 14,
         "Total_Events_2001": 5,
         "Total_Events_2002": 20,
@@ -94,7 +94,7 @@
     {
       "type": "Feature",
       "properties": {
-        "State": "New Mexico",
+        "Location": "New Mexico",
         "Total_Events_2000": 205,
         "Total_Events_2001": 5,
         "Total_Events_2002": 183,
