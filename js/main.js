@@ -103,24 +103,7 @@ function getData(mymap) {
 	// } else if (mymap.getZoom() < 7 ) {
 	// 		eventLayer = "data/state_events.geojson";
 	// }
-        .defer(d3.csv, 'data/county_events.csv')
-        .await(callback);
 
-	var state_events = $.ajax("data/state_events.geojson", {
-		dataType: "json",
-		success: function(response){
-			//L.geoJson(response).addTo(mymap);
-
-			// creating an array of attributes
-			var attributes = processData(response);
-
-			// call function to create proportional symbols
-      createPropSymbols(response, mymap, attributes);
-			createSequenceControls(mymap, attributes);
-			createLegend(mymap, attributes);
-			dropdown(mymap, attributes);
-		}
-	});
 }; // close to getData
 
 function callback(error, csvData){
@@ -311,7 +294,7 @@ function search (mymap, data, proportionalSymbols){
 
   // new variable search control
   var searchLayer = new L.Control.Search({
-    position: 'topleft',  // positions the operator in the top left of the screen
+    position: 'topright',  // positions the operator in the top left of the screen
     layer: proportionalSymbols,  // use proportionalSymbols as the layer to search through
     propertyName: 'Location',  // search for State name
     marker: false,
@@ -339,8 +322,7 @@ function createSequenceControls(mymap, attributes, index){
     options: {
       position: 'bottomleft'
     },
-      position: 'bottomright'
-		},
+
     onAdd: function (mymap) {
 
       // create the control container div with a particular class name
@@ -420,6 +402,7 @@ function createSequenceControls(mymap, attributes, index){
 
 // var to create a dropdown menu
 function dropdown(mymap, attributes) {
+
 	var dropdown = L.DomUtil.create('div', 'dropdown');
 	dropdown.innerHTML = 'Select an Event<select><option value="stateTotalEventsLayer">Total Events</option><option>Avalanche</option>'+
 	'<option>Blizzard</option><option value="stateDroughtsLayer">Drought</option><option>Excessive Heat</option>'+
@@ -428,11 +411,6 @@ function dropdown(mymap, attributes) {
 
 
 	$("#left-pane").append(dropdown);
-		var dropdown = L.DomUtil.create('div', 'dropdown');
-		dropdown.innerHTML = '<select><option>1</option><option>2</option><option>3</option></select>';
-		dropdown.firstChild.onmousedown = dropdown.firstChild.ondblclick = L.DomEvent.stopPropagation;
-
-		$("#left-pane").append(dropdown);
 
 }
 
@@ -579,7 +557,7 @@ function getOverlayData(mymap, attributes) {
 
 // function to create the Proportional Symbols map legend
 function createLegend(mymap, attributes){
-      // legend control in the bottom right of the map
+
       $('#left-pane').append('<div id="temporal-legend" >');
 
       // start attribute legend svg string
@@ -605,17 +583,9 @@ function createLegend(mymap, attributes){
       // close svg string
       svg += "</svg>";
 
-
 			// add attribute legend svg to container
       $('#left-pane').append(svg);
 
-      // add attribute legend svg to container
-      $('#left-pane').append(svg);
-
-      //turn off any mouse event listeners on the legend
-
-
-  // add the legendControl to the map and update it
   updateLegend(mymap, attributes[0]);
 
 }; // close to createLegend function
@@ -749,6 +719,7 @@ function updatePropSymbols(mymap, attribute){
   updateLegend(mymap, attribute); // update the temporal-legend
 }; // close to updatePropSymbols function
 
+
 // create graph for the initial state view
 function stateGraph(csvData){
     // svg to contain chart
@@ -760,27 +731,10 @@ function stateGraph(csvData){
         .attr("class", "chart");
 
     // lines for line graph
-
-//create graph for the initial state view
-function stateGraph(csvData){
-    //svg to contain chart
-    var vis = d3.select('#right-pane')
-        .append('svg')
-        .attr('width', window.innerWidth * 0.16)
-        .attr('height', window.innerWidth * 0.16)
-        .style('right', window.innerWidth * .01)
-        .attr("class", "chart");
-    
-    //lines for line graph
     var lines = vis.selectAll('.bars')
         .data(csvData)
         .enter()
         .append()
 }
-
-function callback(error, csvData){
-    createMap();
- 	stateGraph('data/state_events.csv');
- }
 
 $(document).ready(initialize);
