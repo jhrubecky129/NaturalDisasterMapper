@@ -4,7 +4,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Apache",
+        "Location": "Apache",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -154,7 +154,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Cochise",
+        "Location": "Cochise",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -304,7 +304,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Coconino",
+        "Location": "Coconino",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -454,7 +454,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Gila",
+        "Location": "Gila",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -604,7 +604,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Graham",
+        "Location": "Graham",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -754,7 +754,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Greenlee",
+        "Location": "Greenlee",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -904,7 +904,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "La Paz",
+        "Location": "La Paz",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -1054,7 +1054,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Maricopa",
+        "Location": "Maricopa",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -1204,7 +1204,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Mohave",
+        "Location": "Mohave",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -1354,7 +1354,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Navajo",
+        "Location": "Navajo",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -1504,7 +1504,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Pima",
+        "Location": "Pima",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -1654,7 +1654,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Pinal",
+        "Location": "Pinal",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -1804,7 +1804,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Santa Cruz AZ",
+        "Location": "Santa Cruz AZ",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -1954,7 +1954,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Yavapai",
+        "Location": "Yavapai",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -2104,7 +2104,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Yuma",
+        "Location": "Yuma",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -2254,7 +2254,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Bernalillo",
+        "Location": "Bernalillo",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 14,
@@ -2404,7 +2404,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Catron",
+        "Location": "Catron",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -2554,7 +2554,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Chaves",
+        "Location": "Chaves",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 14,
@@ -2704,7 +2704,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Cibola",
+        "Location": "Cibola",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -2854,7 +2854,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Colfax",
+        "Location": "Colfax",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -3004,7 +3004,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Curry",
+        "Location": "Curry",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 7,
@@ -3154,7 +3154,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "De Baca",
+        "Location": "De Baca",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 7,
@@ -3304,7 +3304,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Dona Ana",
+        "Location": "Dona Ana",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -3454,7 +3454,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Eddy",
+        "Location": "Eddy",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -3604,7 +3604,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Grant",
+        "Location": "Grant",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -3754,7 +3754,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Guadalupe",
+        "Location": "Guadalupe",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 7,
@@ -3904,7 +3904,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Harding",
+        "Location": "Harding",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 7,
@@ -4054,7 +4054,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Hidalgo",
+        "Location": "Hidalgo",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -4204,7 +4204,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Lea",
+        "Location": "Lea",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -4354,7 +4354,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Lincoln NM",
+        "Location": "Lincoln NM",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 13,
@@ -4504,7 +4504,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Los Alamos",
+        "Location": "Los Alamos",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 7,
@@ -4654,7 +4654,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Luna",
+        "Location": "Luna",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -4804,7 +4804,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Mckinley",
+        "Location": "Mckinley",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 7,
@@ -4954,7 +4954,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Mora",
+        "Location": "Mora",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -5104,7 +5104,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Otero",
+        "Location": "Otero",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -5254,7 +5254,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Quay",
+        "Location": "Quay",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 7,
@@ -5404,7 +5404,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Rio Arriba",
+        "Location": "Rio Arriba",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -5554,7 +5554,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Roosevelt",
+        "Location": "Roosevelt",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 7,
@@ -5704,7 +5704,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Sandoval",
+        "Location": "Sandoval",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -5854,7 +5854,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "San Juan",
+        "Location": "San Juan",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 7,
@@ -6004,7 +6004,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "San Miguel",
+        "Location": "San Miguel",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 7,
@@ -6154,7 +6154,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Santa Fe",
+        "Location": "Santa Fe",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 7,
@@ -6304,7 +6304,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Sierra NM",
+        "Location": "Sierra NM",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -6454,7 +6454,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Socorro",
+        "Location": "Socorro",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 14,
@@ -6604,7 +6604,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Taos",
+        "Location": "Taos",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 7,
@@ -6754,7 +6754,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Torrance",
+        "Location": "Torrance",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 7,
@@ -6904,7 +6904,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Union",
+        "Location": "Union",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 7,
@@ -7054,7 +7054,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Valencia",
+        "Location": "Valencia",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -7204,7 +7204,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Alameda",
+        "Location": "Alameda",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -7354,7 +7354,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Alpine",
+        "Location": "Alpine",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -7504,7 +7504,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Amador",
+        "Location": "Amador",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -7654,7 +7654,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Butte",
+        "Location": "Butte",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -7804,7 +7804,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Calaveras",
+        "Location": "Calaveras",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -7954,7 +7954,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Colusa",
+        "Location": "Colusa",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -8104,7 +8104,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Contra Costa",
+        "Location": "Contra Costa",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -8254,7 +8254,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Del Norte",
+        "Location": "Del Norte",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -8404,7 +8404,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "El Dorado",
+        "Location": "El Dorado",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -8554,7 +8554,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Fresno",
+        "Location": "Fresno",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 4,
@@ -8704,7 +8704,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Glenn",
+        "Location": "Glenn",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -8854,7 +8854,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Humboldt",
+        "Location": "Humboldt",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -9004,7 +9004,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Imperial",
+        "Location": "Imperial",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -9154,7 +9154,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Inyo",
+        "Location": "Inyo",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -9304,7 +9304,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Kern",
+        "Location": "Kern",
         "Avalanche_2000": 0,
         "Blizzard_2000": 1,
         "Drought_2000": 2,
@@ -9454,7 +9454,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Kings",
+        "Location": "Kings",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -9604,7 +9604,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Lake",
+        "Location": "Lake",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -9754,7 +9754,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Lassen",
+        "Location": "Lassen",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -9904,7 +9904,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Los Angeles",
+        "Location": "Los Angeles",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -10054,7 +10054,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Madera",
+        "Location": "Madera",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 4,
@@ -10204,7 +10204,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Marin",
+        "Location": "Marin",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -10354,7 +10354,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Mariposa",
+        "Location": "Mariposa",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 4,
@@ -10504,7 +10504,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Mendocino",
+        "Location": "Mendocino",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -10654,7 +10654,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Merced",
+        "Location": "Merced",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 2,
@@ -10804,7 +10804,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Modoc",
+        "Location": "Modoc",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -10954,7 +10954,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Mono",
+        "Location": "Mono",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -11104,7 +11104,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Monterey",
+        "Location": "Monterey",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -11254,7 +11254,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Napa",
+        "Location": "Napa",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -11404,7 +11404,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Nevada",
+        "Location": "Nevada",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -11554,7 +11554,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Orange",
+        "Location": "Orange",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -11704,7 +11704,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Placer",
+        "Location": "Placer",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -11854,7 +11854,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Plumas",
+        "Location": "Plumas",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -12004,7 +12004,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Riverside",
+        "Location": "Riverside",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -12154,7 +12154,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Sacramento",
+        "Location": "Sacramento",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -12304,7 +12304,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "San Benito",
+        "Location": "San Benito",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -12454,7 +12454,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "San Bernardino",
+        "Location": "San Bernardino",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -12604,7 +12604,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "San Diego",
+        "Location": "San Diego",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -12754,7 +12754,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "San Francisco",
+        "Location": "San Francisco",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -12904,7 +12904,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "San Joaquin",
+        "Location": "San Joaquin",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -13054,7 +13054,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "San Luis Obispo",
+        "Location": "San Luis Obispo",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -13204,7 +13204,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "San Mateo",
+        "Location": "San Mateo",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -13354,7 +13354,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Santa Barbara",
+        "Location": "Santa Barbara",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -13504,7 +13504,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Santa Clara",
+        "Location": "Santa Clara",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -13654,7 +13654,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Santa Cruz CA",
+        "Location": "Santa Cruz CA",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -13804,7 +13804,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Shasta",
+        "Location": "Shasta",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -13954,7 +13954,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Sierra CA",
+        "Location": "Sierra CA",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -14104,7 +14104,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Siskiyou",
+        "Location": "Siskiyou",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -14254,7 +14254,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Solano",
+        "Location": "Solano",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -14404,7 +14404,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Sonoma",
+        "Location": "Sonoma",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -14554,7 +14554,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Stanislaus",
+        "Location": "Stanislaus",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -14704,7 +14704,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Sutter",
+        "Location": "Sutter",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -14854,7 +14854,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Tehama",
+        "Location": "Tehama",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -15004,7 +15004,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Trinity",
+        "Location": "Trinity",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -15154,7 +15154,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Tulare",
+        "Location": "Tulare",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 3,
@@ -15304,7 +15304,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Tuolumne",
+        "Location": "Tuolumne",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 2,
@@ -15454,7 +15454,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Ventura",
+        "Location": "Ventura",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -15604,7 +15604,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Yolo",
+        "Location": "Yolo",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -15754,7 +15754,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Yuba",
+        "Location": "Yuba",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -15904,7 +15904,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Churchill",
+        "Location": "Churchill",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -16054,7 +16054,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Clark",
+        "Location": "Clark",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -16204,7 +16204,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Douglas",
+        "Location": "Douglas",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -16354,7 +16354,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Elko",
+        "Location": "Elko",
         "Avalanche_2000": 0,
         "Blizzard_2000": 1,
         "Drought_2000": 0,
@@ -16504,7 +16504,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Esmerelda",
+        "Location": "Esmerelda",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -16654,7 +16654,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Eureka",
+        "Location": "Eureka",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -16804,7 +16804,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Humboldt",
+        "Location": "Humboldt",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -16954,7 +16954,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Lander",
+        "Location": "Lander",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -17104,7 +17104,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Lincoln NV",
+        "Location": "Lincoln NV",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -17254,7 +17254,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Lyon",
+        "Location": "Lyon",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -17404,7 +17404,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Mineral",
+        "Location": "Mineral",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -17554,7 +17554,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Nye",
+        "Location": "Nye",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -17704,7 +17704,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Pershing",
+        "Location": "Pershing",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -17854,7 +17854,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Storey",
+        "Location": "Storey",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -18004,7 +18004,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "Washoe",
+        "Location": "Washoe",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -18154,7 +18154,7 @@
     {
       "type": "Feature",
       "properties": {
-        "County": "White Pine",
+        "Location": "White Pine",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,

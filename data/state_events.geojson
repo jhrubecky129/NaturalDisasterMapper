@@ -4,7 +4,7 @@
     {
       "type": "Feature",
       "properties": {
-        "State": "California",
+        "Location": "California",
         "Avalanche_2000": 0,
         "Blizzard_2000": 1,
         "Drought_2000": 8,
@@ -154,7 +154,7 @@
     {
       "type": "Feature",
       "properties": {
-        "State": "Nevada",
+        "Location": "Nevada",
         "Avalanche_2000": 0,
         "Blizzard_2000": 2,
         "Drought_2000": 0,
@@ -304,7 +304,7 @@
     {
       "type": "Feature",
       "properties": {
-        "State": "Arizona",
+        "Location": "Arizona",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 0,
@@ -454,7 +454,7 @@
     {
       "type": "Feature",
       "properties": {
-        "State": "New Mexico",
+        "Location": "New Mexico",
         "Avalanche_2000": 0,
         "Blizzard_2000": 0,
         "Drought_2000": 153,
