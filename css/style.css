@@ -118,6 +118,12 @@ body {
     font-size: 15px;
     width: 30px;
 }
+.chart {
+    background-color: black;
+    border: medium solid #999;
+    display: block;
+    margin: auto;
+}
 
 .leaflet-popup-content p {
   margin:  0.2em 0;

@@ -1,7 +1,7 @@
 /* Script by Jacob P. Hrubecky, David J. Waro, Peter Nielsen, 2017 */
 
 function initialize(){
-	createMap();
+	getData();
 };
 
 // Title
@@ -25,7 +25,6 @@ function createMap() {
 		//add navigation bar to the map
 	L.control.navbar().addTo(mymap);
 
-	getData(mymap);
 	layers(mymap);
 
 }; // close to createMap
@@ -113,10 +112,9 @@ function changeLayers(mymap, swStates, counties) {
 // assigns the respected geojsons to the apropriate variables
 function getData(mymap) {
 
-	// d3.queue()
-	// 		.defer(d3.json, "data/state_events.geojson") // load attributes from csv
-	// 		.defer(d3.json, "data/NZ_Boundaries.topojson") // spatial data
-	// 		.await(callback);
+	d3.queue()
+        .defer(d3.csv, 'data/county_events.csv')
+        .await(callback);
 
 	var state_events = $.ajax("data/state_events.geojson", {
 		dataType: "json",
@@ -615,8 +613,26 @@ function updatePropSymbols(mymap, attribute){
   updateLegend(mymap, attribute); // update the temporal-legend
 }; // close to updatePropSymbols function
 
-// function callback(response, status, jqXHRobject){
-// 	console.log(response)
-// }
+//create graph for the initial state view
+function stateGraph(csvData){
+    //svg to contain chart
+    var vis = d3.select('#right-pane')
+        .append('svg')
+        .attr('width', window.innerWidth * 0.16)
+        .attr('height', window.innerWidth * 0.16)
+        .style('right', window.innerWidth * .01)
+        .attr("class", "chart");
+    
+    //lines for line graph
+    var lines = vis.selectAll('.bars')
+        .data(csvData)
+        .enter()
+        .append()
+}
+
+function callback(error, csvData){
+    createMap();
+ 	stateGraph('data/state_events.csv');
+ }
 
 $(document).ready(initialize);
