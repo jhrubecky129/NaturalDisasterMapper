@@ -727,11 +727,32 @@ function stateGraph(csvData){
         .append('svg')
         .attr('width', window.innerWidth * 0.15)
         .attr('height', window.innerWidth * 0.15)
-        .style('right', window.innerWidth * .01)
         .attr("class", "chart");
+    
+    //scale
+    var xScale = d3.scaleLinear()
+        .range([0, window.innerWidth*0.15])
+        .domain([2016, 2000]);
+    var yScale = d3.scaleLinear()
+        .range([0, window.innerHeight*0.15])
+        .domain([40, 0]);
+    
+    //axis
+    var xAxis = d3.svg.axis()
+        .orient("left")
+        .scale(xScale);
+    var yAxis = d3.axisLeft()
+        .scale(yScale);
+    
+    vis.append("svg:g")
+        .attr("translate", 5)
+        .call(xAxis);
+    vis.append("svg:g")
+        .attr("translate", 5)
+        .call(yAxis);
 
     // lines for line graph
-    var lines = vis.selectAll('.bars')
+    var lines = vis.selectAll('.lines')
         .data(csvData)
         .enter()
         .append()
